@@ -40,6 +40,5 @@ jobs:
 
     # Step 6: Upload coverage to Coveralls
     - name: Upload Coverage to Coveralls
-      run: npx coveralls < coverage/lcov.info
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.BALKRISHNA}}
+      run: npx coveralls --repo-token=${{ secrets.BALKRISHNA }} --service=github < coverage/lcov.info
+
