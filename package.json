@@ -1,14 +1,20 @@
 {
   "name": "software-testing-assignment",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a project template for students participating in Software Testing course\r at Tampere University.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no tests are implemented yet \" && exit 1"
-  },
+    "test": "mocha",
+    "coverage": "c8 --reporter=lcov mocha"
+},
   "author": "",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "c8": "^10.1.2",
+    "chai": "^5.1.2",
+    "coveralls": "^3.1.1",
+    "mocha": "^10.8.2"
+  },
+  "keywords": []
 }
