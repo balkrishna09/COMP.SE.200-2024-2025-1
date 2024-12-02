@@ -1,0 +1,45 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]
+
+    steps:
+    # Step 1: Check out the repository code
+    - uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js environment
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # Step 3: Install dependencies
+    - name: Install Dependencies
+      run: npm ci
+
+    # Step 4: Run tests
+    - name: Run Tests
+      run: npm test
+
+    # Step 5: Generate coverage report
+    - name: Generate Coverage
+      run: npm run coverage
+
+    # Step 6: Upload coverage to Coveralls
+    - name: Upload Coverage to Coveralls
+      run: npx coveralls < coverage/lcov.info
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.BALKRISHNA}}
